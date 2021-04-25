@@ -10,4 +10,4 @@ We build a native app which run on all the platforms(android, web, ios). We basi
 ##how will the EnRoute-x exactly work-
 our app as it's name suggest is very helpful in enrouting (tracking) the a x person ( your closed ones) in the oath no matter wherever they are going whenever they
 are going.
-our app will be tracking the exact path of a person , through which he or she maybe going 
+our app will be tracking the exact path of a person , through which he or she maybe travelling and the path 
