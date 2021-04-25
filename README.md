@@ -12,4 +12,13 @@ our app as it's name suggest is very helpful in enrouting (tracking) the a x per
 are going.
 our app will be tracking the exact path of a person , through which he or she maybe travelling .
 ### login page -
- we will allow the user to sign up  to our app via google or phone number 
+ we will allow the user to sign up  to our app via email or phone number .
+### profile page -
+this page will collect basic data of the user such as email , phone number , address , blood group , emergency contact.
+### friend list-
+we will allow the user to conncet with diffrent people on this app as friends . all the people in your friendlist can request you for your location .
+it is the user's choice to provide with the acess or not. this page will be showing yoyr friend lust and details of all your friends .
+### tracking x-
+the user can track any of thier friends if there request is not denied by thier friend by just providing simple information such as email , phone number and so on .
+so that the app can contact you in emergency situations / to send warning pop ups to you in case of need.
+
