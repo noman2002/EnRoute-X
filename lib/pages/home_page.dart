@@ -1,3 +1,4 @@
+import 'package:enroute_x/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,7 +8,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("EnRoute-X"),
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: MyDrawer(),
+      ),
     );
   }
 }
