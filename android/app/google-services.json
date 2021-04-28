@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "993474351069",
+    "project_id": "enroute-x",
+    "storage_bucket": "enroute-x.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993474351069:android:3e074257299be7ececb034",
+        "android_client_info": {
+          "package_name": "com.example.enroute_x"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993474351069-8cun2p3d0r9k2g0boi5obe02s430ho7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.enroute_x",
+            "certificate_hash": "667e83dbb4c15a711d14c593850d0d0073871f26"
+          }
+        },
+        {
+          "client_id": "993474351069-ik3ttko8pfh5p8gb5q073hktro476du6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnmEHaLIc5Uywe80FfJSEcz5mv0cFI66s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993474351069-ik3ttko8pfh5p8gb5q073hktro476du6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
