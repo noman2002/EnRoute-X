@@ -30,8 +30,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: "EnRoute-X".text.make(),
+        backgroundColor: Colors.orange,
+        title: "EnRoute-X".text.black.make(),
+        iconTheme: IconThemeData.fallback(),
       ),
       body: Material(
         color: context.canvasColor,
@@ -125,7 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 60,
                       ),
                       Material(
-                        color: changeButton ? Colors.green : Colors.deepPurple,
+                        color: changeButton ? Colors.green : Colors.deepOrange,
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
                         child: InkWell(
