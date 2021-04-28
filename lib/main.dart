@@ -1,11 +1,9 @@
 import 'package:enroute_x/pages/home_page.dart';
 import 'package:enroute_x/pages/login_page.dart';
 import 'package:enroute_x/utils/routes.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
-  await Firebase.initializeApp();
+void main() {
   return runApp(MyApp());
 }
 
