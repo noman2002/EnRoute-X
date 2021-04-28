@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Material(
                           color:
-                              changeButton ? Colors.green : Colors.deepPurple,
+                              changeButton ? Colors.green : Colors.deepOrange,
                           borderRadius:
                               BorderRadius.circular(changeButton ? 50 : 8),
                           child: InkWell(
@@ -140,8 +140,15 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
+            "Don't have an accout?? Sign Up Here.."
+                .text
+                .bold
+                .lg
+                .color(Colors.grey)
+                .make()
+                .p12(),
             Material(
-              color: changeButton ? Colors.green : Colors.deepPurple,
+              color: changeButton ? Colors.green : Colors.deepOrange,
               borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
               child: InkWell(
                 onTap: () => moveToSignUp(context),
