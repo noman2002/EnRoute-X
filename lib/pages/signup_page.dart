@@ -28,135 +28,134 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: context.canvasColor,
-      child: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                "EnRoute-X",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: "EnRoute-X".text.make(),
+      ),
+      body: Material(
+        color: context.canvasColor,
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 40,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Welcome $name",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Enter Full Name",
-                        labelText: "Full Name",
+                Text(
+                  "Welcome to Sign Up",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Enter Full Name",
+                          labelText: "Full Name",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "name cannot be empty";
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "name cannot be empty";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Enter username/Email",
-                        labelText: "UserName/Email",
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Enter username/Email",
+                          labelText: "UserName/Email",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "username cannot be empty";
+                          }
+                          return null;
+                        },
+                        // onChanged: (value) {
+                        //   name = value;
+                        //   setState(() {});
+                        // },
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "username cannot be empty";
-                        }
-                        return null;
-                      },
-                      // onChanged: (value) {
-                      //   name = value;
-                      //   setState(() {});
-                      // },
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Enter Password",
-                        labelText: "Password",
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: "Enter Password",
+                          labelText: "Password",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Password cannot be empty";
+                          } else if (value.length < 6) {
+                            return "Password length should be at least 6";
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          password = value;
+                        },
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Password cannot be empty";
-                        } else if (value.length < 6) {
-                          return "Password length should be at least 6";
-                        }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        password = value;
-                      },
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Re-enter Password",
-                        labelText: "Confirm Password",
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: "Re-enter Password",
+                          labelText: "Confirm Password",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Password cannot be empty";
+                          } else if (value != password) {
+                            return "Password doesn't match";
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Password cannot be empty";
-                        } else if (value != password) {
-                          return "Password doesn't match";
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 60,
-                    ),
-                    Material(
-                      color: changeButton ? Colors.green : Colors.deepPurple,
-                      borderRadius:
-                          BorderRadius.circular(changeButton ? 50 : 8),
-                      child: InkWell(
-                        onTap: () => moveToHome(context),
-                        child: AnimatedContainer(
-                          duration: Duration(seconds: 1),
-                          height: 50,
-                          width: changeButton ? 50 : 150,
-                          alignment: Alignment.center,
-                          child: changeButton
-                              ? Icon(
-                                  Icons.done,
-                                  color: Colors.white,
-                                )
-                              : Text(
-                                  "Sign Up",
-                                  style: TextStyle(
+                      SizedBox(
+                        height: 60,
+                      ),
+                      Material(
+                        color: changeButton ? Colors.green : Colors.deepPurple,
+                        borderRadius:
+                            BorderRadius.circular(changeButton ? 50 : 8),
+                        child: InkWell(
+                          onTap: () => moveToHome(context),
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 1),
+                            height: 50,
+                            width: changeButton ? 50 : 150,
+                            alignment: Alignment.center,
+                            child: changeButton
+                                ? Icon(
+                                    Icons.done,
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                                  )
+                                : Text(
+                                    "Sign Up",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
-                                ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
