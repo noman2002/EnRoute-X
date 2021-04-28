@@ -37,6 +37,13 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 40,
                 ),
+                Text(
+                  "EnRoute-X",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Image.asset(
                   "assets/images/loginimage.png",
                   fit: BoxFit.cover,
