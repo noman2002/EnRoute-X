@@ -25,6 +25,19 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+ moveToSignUp(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        changeButton = true;
+      });
+      await Future.delayed(Duration(milliseconds: 300));
+      await Navigator.pushNamed(context, MyRoutes.signupRoute);
+      setState(() {
+        changeButton = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -103,7 +116,9 @@ class _LoginPageState extends State<LoginPage> {
                         color: changeButton ? Colors.green : Colors.deepPurple,
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
-                        child: InkWell(
+                        child: Row(
+                          children: [
+                            InkWell(
                           onTap: () => moveToHome(context),
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
@@ -125,6 +140,31 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                           ),
                         ),
+
+                        InkWell(
+                          onTap: () => moveToHome(context),
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 1),
+                            height: 50,
+                            width: changeButton ? 50 : 150,
+                            alignment: Alignment.center,
+                            child: changeButton
+                                ? Icon(
+                                    Icons.done,
+                                    color: Colors.white,
+                                  )
+                                : Text(
+                                    "Login",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                          ],
+                        )
                       ),
                     ],
                   ),
