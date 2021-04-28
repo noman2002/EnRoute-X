@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       themeMode: ThemeMode.system,
-      theme: MyThemes.lightTheme(context),
+      // theme: MyThemes.lightTheme(context),
       debugShowCheckedModeBanner: false,
-      darkTheme: MyThemes.darkTheme(context),
+      // darkTheme: MyThemes.darkTheme(context),
       initialRoute: MyRoutes.homeRoute,
       routes: {
         "/": (context) => LoginPage(),
