@@ -1,5 +1,6 @@
 import 'package:enroute_x/pages/home_page.dart';
 import 'package:enroute_x/pages/login_page.dart';
+import 'package:enroute_x/pages/signup_page.dart';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:flutter/material.dart';
 
