@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class MyDrawer extends StatelessWidget {
         "https://avatars.githubusercontent.com/u/54404474?v%3D4&imgrefurl=https://github.com/noman2002&tbnid=NU56ZrYbZ4CfsM&vet=1&docid=kB_R4S8gie7mMM&w=460&h=460&itg=1&source=sh/x/im";
     return Drawer(
       child: Container(
-        color: Colors.orange[700],
+        color: Colors.orange,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -18,8 +19,8 @@ class MyDrawer extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.transparent),
                 margin: EdgeInsets.zero,
-                accountName: Text("Noman"),
-                accountEmail: Text("nomn2002@gmail.com"),
+                accountName: "Noman".text.black.make(),
+                accountEmail: "nomn2002@gmail.com".text.black.make(),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(ImageUrl),
                 ),
@@ -28,52 +29,52 @@ class MyDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(
                 CupertinoIcons.home,
-                color: Colors.white,
+                color: Colors.black,
               ),
               title: Text(
                 "Home",
                 textScaleFactor: 1.3,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
             ),
             ListTile(
               leading: Icon(
                 CupertinoIcons.profile_circled,
-                color: Colors.white,
+                color: Colors.black,
               ),
               title: Text(
                 "Profile",
                 textScaleFactor: 1.3,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
             ),
             ListTile(
               leading: Icon(
                 CupertinoIcons.mail,
-                color: Colors.white,
+                color: Colors.black,
               ),
               title: Text(
                 "Email me",
                 textScaleFactor: 1.3,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
             ),
             ListTile(
               leading: Icon(
                 CupertinoIcons.settings,
-                color: Colors.white,
+                color: Colors.black,
               ),
               title: Text(
                 "Settings",
                 textScaleFactor: 1.3,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
             ),

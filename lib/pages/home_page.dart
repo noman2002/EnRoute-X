@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData.fallback(),
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.orange,
         title: "EnRoute-X".text.black.make(),
       ),
       drawer: Drawer(
