@@ -18,120 +18,164 @@ class _LoginPageState extends State<LoginPage> {
         changeButton = true;
       });
       await Future.delayed(Duration(milliseconds: 300));
-      // await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      await Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
         changeButton = false;
       });
     }
   }
 
+  moveToSignUp(BuildContext context) async {
+    await Future.delayed(Duration(milliseconds: 300));
+    await Navigator.pushNamed(context, MyRoutes.signupRoute);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: context.canvasColor,
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                Text(
-                  "EnRoute-X",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+      color: context.canvasColor,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 40,
                   ),
-                ),
-                Image.asset(
-                  "assets/images/loginimage.png",
-                  fit: BoxFit.cover,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Welcome $name",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    "EnRoute-X",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: "Enter username",
-                          labelText: "UserName",
+                  Image.asset(
+                    "assets/images/loginimage.png",
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Welcome $name",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Enter username",
+                            labelText: "UserName",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "username cannot be empty";
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            name = value;
+                            setState(() {});
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "username cannot be empty";
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {
-                          name = value;
-                          setState(() {});
-                        },
-                      ),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: "Enter Password",
-                          labelText: "Password",
+                        TextFormField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: "Enter Password",
+                            labelText: "Password",
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Password cannot be empty";
+                            } else if (value.length < 6) {
+                              return "Password length should be at least 6";
+                            }
+                            return null;
+                          },
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Password cannot be empty";
-                          } else if (value.length < 6) {
-                            return "Password length should be at least 6";
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 60,
-                      ),
-                      Material(
-                        color: changeButton ? Colors.green : Colors.deepPurple,
-                        borderRadius:
-                            BorderRadius.circular(changeButton ? 50 : 8),
-                        child: InkWell(
-                          onTap: () => moveToHome(context),
-                          child: AnimatedContainer(
-                            duration: Duration(seconds: 1),
-                            height: 50,
-                            width: changeButton ? 50 : 150,
-                            alignment: Alignment.center,
-                            child: changeButton
-                                ? Icon(
-                                    Icons.done,
-                                    color: Colors.white,
-                                  )
-                                : Text(
-                                    "Login",
-                                    style: TextStyle(
+                        SizedBox(
+                          height: 60,
+                        ),
+                        Material(
+                          color:
+                              changeButton ? Colors.green : Colors.deepOrange,
+                          borderRadius:
+                              BorderRadius.circular(changeButton ? 50 : 8),
+                          child: InkWell(
+                            onTap: () => moveToHome(context),
+                            child: AnimatedContainer(
+                              duration: Duration(seconds: 1),
+                              height: 50,
+                              width: changeButton ? 50 : 150,
+                              alignment: Alignment.center,
+                              child: changeButton
+                                  ? Icon(
+                                      Icons.done,
                                       color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                    )
+                                  : Text(
+                                      "Login",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
                                     ),
-                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ));
+            "Don't have an accout?? Sign Up Here.."
+                .text
+                .bold
+                .lg
+                .color(Colors.grey)
+                .make()
+                .p12(),
+            Material(
+              color: changeButton ? Colors.green : Colors.deepOrange,
+              borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
+              child: InkWell(
+                onTap: () => moveToSignUp(context),
+                child: AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  height: 50,
+                  width: changeButton ? 50 : 150,
+                  alignment: Alignment.center,
+                  child: changeButton
+                      ? Icon(
+                          Icons.done,
+                          color: Colors.white,
+                        )
+                      : Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
