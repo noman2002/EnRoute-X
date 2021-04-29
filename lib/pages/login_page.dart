@@ -19,7 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   checkAuthentication() async {
     _auth.authStateChanges().listen((User) {
       if (User != null) {
-        Navigator.pushNamed(context, MyRoutes.homeRoute);
+        print(User);
+
+        Navigator.pushReplacementNamed(context, "/");
       }
     });
   }
@@ -36,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
       try {
         Future<UserCredential> user = _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
+        return "login successful";
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           print('No user found for that email.');
