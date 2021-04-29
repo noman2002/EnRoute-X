@@ -29,9 +29,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   getUser() async {
-    User? firebaseUser = await _auth.currentUser;
+    User? firebaseUser = _auth.currentUser;
     await firebaseUser?.reload();
-    firebaseUser = await _auth.currentUser;
+    firebaseUser = _auth.currentUser;
 
     if (firebaseUser != null) {
       setState(() {
@@ -57,11 +57,11 @@ class _HomePageState extends State<HomePage> {
         child: MyDrawer(),
       ),
       body: !isloggedin
-          ? CircularProgressIndicator()
+          ? CircularProgressIndicator().centered()
           : Material(
               child: Column(
                 children: [
-                  ElevatedButton(onPressed: () {}, child: Text("SignOut")),
+                  ElevatedButton(onPressed: signOut(), child: Text("SignOut")),
                 ],
               ),
             ),

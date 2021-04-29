@@ -1,5 +1,5 @@
 import 'package:enroute_x/utils/routes.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
