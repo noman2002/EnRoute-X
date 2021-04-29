@@ -15,17 +15,33 @@ class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
+  User? user;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((User) {
       if (User == null) {
-        Navigator.pushNamed(context,MyRoutes.loginRoute );
+        Navigator.pushNamed(context, MyRoutes.loginRoute);
       }
     });
   }
 
-  getUser()async{
-    
+  @override
+  void initState() {
+    this.checkAuthentication();
+    this.getUser();
+  }
+
+  getUser() async {
+    User? firebaseUser = await _auth.currentUser;
+    await firebaseUser?.reload();
+    firebaseUser = await _auth.currentUser;
+
+    if (firebaseUser != null) {
+      setState(() {
+        this.user = firebaseUser!;
+        this.isloggedin = true;
+      });
+    }
   }
 
   moveToHome(BuildContext context) async {
