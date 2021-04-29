@@ -12,24 +12,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
-  User? user;
+  User user=null;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
       if (user == null) {
-        Navigator.pushNamed(context, MyRoutes.loginRoute);
+        Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
       }
     });
   }
 
-  @override
-  void initState() {
-    this.checkAuthentication();
-    this.getUser();
-  }
-
   getUser() async {
-    User? firebaseUser = _auth.currentUser;
+    User firebaseUser = _auth.currentUser;
     await firebaseUser?.reload();
     firebaseUser = _auth.currentUser;
 
@@ -43,6 +37,13 @@ class _HomePageState extends State<HomePage> {
 
   signOut() async {
     _auth.signOut();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+    this.getUser();
   }
 
   @override

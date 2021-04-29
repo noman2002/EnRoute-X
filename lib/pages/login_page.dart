@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       if (user != null) {
         print(user);
 
-        Navigator.pushReplacementNamed(context, "/");
+        Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
       }
     });
   }
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-         await _auth.signInWithEmailAndPassword(
+        await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
         return "login successful";
       } on FirebaseAuthException catch (e) {
