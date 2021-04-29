@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   checkAuthentication() async {
-    _auth.authStateChanges().listen(( user) {
+    _auth.authStateChanges().listen((user) {
       if (user != null) {
         print(user);
 
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius:
                               BorderRadius.circular(changeButton ? 50 : 8),
                           child: InkWell(
-                            onTap: () => login,
+                            onTap: () => login(),
                             child: AnimatedContainer(
                               duration: Duration(seconds: 1),
                               height: 50,
