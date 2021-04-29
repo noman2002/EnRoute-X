@@ -17,9 +17,9 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   checkAuthentication() async {
-    _auth.authStateChanges().listen((User) {
-      if (User != null) {
-        print(User);
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        print(user);
 
         Navigator.pushReplacementNamed(context, "/");
       }
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-        Future<UserCredential> user = _auth.signInWithEmailAndPassword(
+         await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
         return "login successful";
       } on FirebaseAuthException catch (e) {
