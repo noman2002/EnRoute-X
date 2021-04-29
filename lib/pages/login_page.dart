@@ -1,5 +1,5 @@
 import 'package:enroute_x/utils/routes.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -12,23 +12,39 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // String name = "";
   bool changeButton = false;
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   String _email = "", _password = "";
   final _formKey = GlobalKey<FormState>();
 
-  // checkAuthentication() async {
-  //   _auth.authStateChanges().listen((User) {
-  //     if (User != null) {
-  //       Navigator.pushNamed(context, MyRoutes.homeRoute);
-  //     }
-  //   });
-  // }
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((User) {
+      if (User != null) {
+        Navigator.pushNamed(context, MyRoutes.homeRoute);
+      }
+    });
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   this.checkAuthentication();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+  }
+
+  login() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      try {
+        Future<UserCredential> user = _auth.signInWithEmailAndPassword(
+            email: _email, password: _password);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
+      }
+    }
+  }
 
   moveToHome(BuildContext context) async {
     if (_formKey.currentState!.validate()) {

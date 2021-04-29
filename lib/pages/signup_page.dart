@@ -1,4 +1,5 @@
 import 'package:enroute_x/utils/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -12,6 +13,20 @@ class _SignUpPageState extends State<SignUpPage> {
   String password = "";
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isloggedin = false;
+
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((User) {
+      if (User == null) {
+        Navigator.pushNamed(context,MyRoutes.loginRoute );
+      }
+    });
+  }
+
+  getUser()async{
+    
+  }
 
   moveToHome(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
