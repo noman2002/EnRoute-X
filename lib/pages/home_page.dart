@@ -1,6 +1,6 @@
 import 'package:enroute_x/widgets/drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';,
+import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -8,8 +8,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData.fallback(),
-        backgroundColor: Colors.deepOrange[300],
-        title: "EnRoute-X".text.make(),
+        backgroundColor: Colors.orange,
+        title: "EnRoute-X".text.black.make(),
       ),
       drawer: Drawer(
         child: MyDrawer(),

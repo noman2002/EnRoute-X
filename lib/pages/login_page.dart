@@ -1,4 +1,6 @@
 import 'package:enroute_x/utils/routes.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -8,9 +10,25 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String name = "";
+  // String name = "";
   bool changeButton = false;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _email = "", _password = "";
   final _formKey = GlobalKey<FormState>();
+
+  // checkAuthentication() async {
+  //   _auth.authStateChanges().listen((User) {
+  //     if (User != null) {
+  //       Navigator.pushNamed(context, MyRoutes.homeRoute);
+  //     }
+  //   });
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   this.checkAuthentication();
+  // }
 
   moveToHome(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
@@ -59,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20,
                   ),
                   Text(
-                    "Welcome $name",
+                    "Welcome ",
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -74,8 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         TextFormField(
                           decoration: InputDecoration(
-                            hintText: "Enter username",
-                            labelText: "UserName",
+                            prefixIcon: Icon(Icons.mail),
+                            hintText: "Enter Email",
+                            labelText: "Email",
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -83,14 +102,18 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           },
-                          onChanged: (value) {
-                            name = value;
-                            setState(() {});
+                          // onChanged: (value) {
+                          //   name = value;
+                          //   setState(() {});
+                          // },
+                          onSaved: (input) {
+                            _email = input!;
                           },
                         ),
                         TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock),
                             hintText: "Enter Password",
                             labelText: "Password",
                           ),
@@ -101,6 +124,9 @@ class _LoginPageState extends State<LoginPage> {
                               return "Password length should be at least 6";
                             }
                             return null;
+                          },
+                          onSaved: (input) {
+                            _password = input!;
                           },
                         ),
                         SizedBox(
