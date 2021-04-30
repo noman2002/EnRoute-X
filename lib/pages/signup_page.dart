@@ -29,6 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       appBar: AppBar(
         backgroundColor: Colors.orange,
         title: "EnRoute-X".text.black.make(),
@@ -78,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           hintText: "Enter username/Email",
                           labelText: "UserName/Email",
                         ),
-                        validator: (value) {
+                        validator: (value) { 
                           if (value!.isEmpty) {
                             return "username cannot be empty";
                           }

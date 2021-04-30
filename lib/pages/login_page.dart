@@ -1,5 +1,5 @@
 import 'package:enroute_x/utils/routes.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -12,36 +12,55 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // String name = "";
   bool changeButton = false;
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   String _email = "", _password = "";
   final _formKey = GlobalKey<FormState>();
 
-  // checkAuthentication() async {
-  //   _auth.authStateChanges().listen((User) {
-  //     if (User != null) {
-  //       Navigator.pushNamed(context, MyRoutes.homeRoute);
-  //     }
-  //   });
-  // }
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        print(user);
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   this.checkAuthentication();
-  // }
+        Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
+      }
+    });
+  }
 
-  moveToHome(BuildContext context) async {
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+  }
+
+  login() async {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        changeButton = true;
-      });
-      await Future.delayed(Duration(milliseconds: 300));
-      await Navigator.pushNamed(context, MyRoutes.homeRoute);
-      setState(() {
-        changeButton = false;
-      });
+      _formKey.currentState!.save();
+      try {
+        await _auth.signInWithEmailAndPassword(
+            email: _email, password: _password);
+        return "login successful";
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
+      }
     }
   }
+
+  // moveToHome(BuildContext context) async {
+  //   if (_formKey.currentState!.validate()) {
+  //     setState(() {
+  //       changeButton = true;
+  //     });
+  //     await Future.delayed(Duration(milliseconds: 300));
+  //     await Navigator.pushNamed(context, MyRoutes.homeRoute);
+  //     setState(() {
+  //       changeButton = false;
+  //     });
+  //   }
+  // }
 
   moveToSignUp(BuildContext context) async {
     await Future.delayed(Duration(milliseconds: 300));
@@ -138,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius:
                               BorderRadius.circular(changeButton ? 50 : 8),
                           child: InkWell(
-                            onTap: () => moveToHome(context),
+                            onTap: () => login(),
                             child: AnimatedContainer(
                               duration: Duration(seconds: 1),
                               height: 50,

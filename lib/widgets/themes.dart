@@ -4,7 +4,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 class MyThemes {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.orange,
         fontFamily: GoogleFonts.poppins().fontFamily,
         cardColor: Colors.white,
         canvasColor: creamColor,
@@ -29,7 +29,6 @@ class MyThemes {
           color: Colors.white,
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.white),
-         
         ),
       );
 //colors
