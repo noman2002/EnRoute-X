@@ -23,6 +23,8 @@ the user can track any of thier friends if there request is not denied by thier 
 so that the app can contact you in emergency situations / to send warning pop ups to you in case of need.
 ## Features 
 - sos-alerts-
- This feature of our app will send emergency notifications to the list of friends whom you have allowed access to whenever your route is shifted from the one which is predefined in the app , or if the you are taking more time than the defined time in reaching your destination . 1
- if pressed thrice this  feature will connect you to the nearest police station / pcr so that you can get help.
- 
+ This feature of our app will send emergency notifications to the list of friends whom you have allowed access to whenever your route is shifted from the one which is predefined in the app , or if the you are taking more time than the defined time in reaching your destination . 
+ - privacy concern-
+our app care about you and your personal data ,no one will be able to access your live location without your permission . even your own friends , if demand accees for your location won't be provided with the same without your permission.
+- changing Destination- no one  even you will be able to change your destination once chosen . it will only allow change if you and minimum one , friends will give permission for changing the destination including you .
+- 
