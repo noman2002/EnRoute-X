@@ -21,4 +21,8 @@ it is the user's choice to provide with the acess or not. this page will be show
 ### tracking x-
 the user can track any of thier friends if there request is not denied by thier friend by just providing simple information such as email , phone number and so on .
 so that the app can contact you in emergency situations / to send warning pop ups to you in case of need.
-
+## Features 
+- sos-alerts-
+ This feature of our app will send emergency notifications to the list of friends whom you have allowed access to whenever your route is shifted from the one which is predefined in the app , or if the you are taking more time than the defined time in reaching your destination . 1
+ if pressed thrice this  feature will connect you to the nearest police station / pcr so that you can get help.
+ 
