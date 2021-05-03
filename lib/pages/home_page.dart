@@ -63,7 +63,8 @@ class _HomePageState extends State<HomePage> {
           : Material(
               child: Column(
                 children: [
-                  ElevatedButton(onPressed: signOut(), child: Text("SignOut")),
+                  ElevatedButton(
+                      onPressed: () => signOut(), child: Text("SignOut")),
                 ],
               ),
             ),
