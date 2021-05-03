@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MyDrawer extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.transparent),
                 margin: EdgeInsets.zero,
-                accountName: "Noman".text.black.make(),
+                accountName: "${user.displayName}".text.black.make(),
                 accountEmail: "nomn2002@gmail.com".text.black.make(),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(ImageUrl),
