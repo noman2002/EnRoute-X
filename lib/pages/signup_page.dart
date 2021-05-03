@@ -11,12 +11,12 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String _name = "";
   String _password = "";
-String _email="";
+  String _email = "";
   bool signupButton = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
 
-checkAuthentication() async {
+  checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
       if (user != null) {
         Navigator.of(context).pushReplacementNamed(MyRoutes.homeRoute);
@@ -35,6 +35,47 @@ checkAuthentication() async {
         signupButton = false;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+  }
+
+  signUp() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      try {
+        UserCredential user = await _auth.createUserWithEmailAndPassword(
+            email: _email, password: _password);
+        if (user != null) {
+          await _auth.currentUser!.updateProfile(displayName: _name);
+        }
+      } catch (e) {
+        showError(e.toString());
+        print(e);
+      }
+    }
+  }
+
+  showError(String errormessage) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ERROR'),
+            content: Text(errormessage),
+            actions: <Widget>[
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        });
   }
 
   @override
