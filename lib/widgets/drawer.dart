@@ -1,9 +1,50 @@
+import 'package:enroute_x/utils/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
+  @override
+  _MyDrawerState createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isloggedin = false;
+  User? user;
+
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((user) {
+      if (user == null) {
+        Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
+      }
+    });
+  }
+
+  getUser() async {
+    User? firebaseUser = _auth.currentUser;
+    await firebaseUser?.reload();
+    firebaseUser = _auth.currentUser;
+
+    if (firebaseUser != null) {
+      if (mounted)
+        setState(() {
+          this.user = firebaseUser;
+          this.isloggedin = true;
+        });
+    }
+  }
+
+  signOut() async {
+    _auth.signOut();
+  }
+
+
+  
   @override
   Widget build(BuildContext context) {
     // ignore: non_constant_identifier_names
@@ -20,7 +61,7 @@ class MyDrawer extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.transparent),
                 margin: EdgeInsets.zero,
-                accountName: "${user.displayName}".text.black.make(),
+                accountName: "${user!.displayName}".text.black.make(),
                 accountEmail: "nomn2002@gmail.com".text.black.make(),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(ImageUrl),
