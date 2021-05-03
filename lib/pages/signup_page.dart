@@ -1,4 +1,5 @@
 import 'package:enroute_x/utils/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -8,20 +9,22 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String name = "";
-  String password = "";
-  bool changeButton = false;
+  String _name = "";
+  String _password = "";
+
+  bool signupButton = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
 
   moveToHome(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       setState(() {
-        changeButton = true;
+        signupButton = true;
       });
       await Future.delayed(Duration(milliseconds: 300));
       await Navigator.pushNamed(context, MyRoutes.loginRoute);
       setState(() {
-        changeButton = false;
+        signupButton = false;
       });
     }
   }
@@ -29,7 +32,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       appBar: AppBar(
         backgroundColor: Colors.orange,
         title: "EnRoute-X".text.black.make(),
@@ -55,6 +57,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                Text(
+                  "$_name",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -73,22 +82,22 @@ class _SignUpPageState extends State<SignUpPage> {
                           }
                           return null;
                         },
+                        onChanged: (value) {
+                          _name = value;
+                          setState(() {});
+                        },
                       ),
                       TextFormField(
                         decoration: InputDecoration(
                           hintText: "Enter username/Email",
                           labelText: "UserName/Email",
                         ),
-                        validator: (value) { 
+                        validator: (value) {
                           if (value!.isEmpty) {
                             return "username cannot be empty";
                           }
                           return null;
                         },
-                        // onChanged: (value) {
-                        //   name = value;
-                        //   setState(() {});
-                        // },
                       ),
                       TextFormField(
                         obscureText: true,
@@ -105,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           return null;
                         },
                         onChanged: (value) {
-                          password = value;
+                          _password = value;
                         },
                       ),
                       TextFormField(
@@ -117,7 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Password cannot be empty";
-                          } else if (value != password) {
+                          } else if (value != _password) {
                             return "Password doesn't match";
                           }
                           return null;
@@ -127,17 +136,17 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 60,
                       ),
                       Material(
-                        color: changeButton ? Colors.green : Colors.deepOrange,
+                        color: signupButton ? Colors.green : Colors.deepOrange,
                         borderRadius:
-                            BorderRadius.circular(changeButton ? 50 : 8),
+                            BorderRadius.circular(signupButton ? 50 : 8),
                         child: InkWell(
                           onTap: () => moveToHome(context),
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
                             height: 50,
-                            width: changeButton ? 50 : 150,
+                            width: signupButton ? 50 : 150,
                             alignment: Alignment.center,
-                            child: changeButton
+                            child: signupButton
                                 ? Icon(
                                     Icons.done,
                                     color: Colors.white,
@@ -164,9 +173,3 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
-
-
-
-
-
-
