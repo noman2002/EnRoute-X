@@ -11,7 +11,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // String name = "";
-  bool changeButton = false;
+  bool loginButton = false;
+  bool signupButton = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _email = "", _password = "";
   final _formKey = GlobalKey<FormState>();
@@ -21,15 +22,12 @@ class _LoginPageState extends State<LoginPage> {
       if (user != null) {
         print(user);
         setState(() {
-          changeButton = true;
+          loginButton = true;
         });
         await Future.delayed(
           Duration(milliseconds: 300),
         );
-        await Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
-        setState(() {
-          changeButton = false;
-        });
+        Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
       }
     });
   }
@@ -72,8 +70,14 @@ class _LoginPageState extends State<LoginPage> {
   // }
 
   moveToSignUp(BuildContext context) async {
+    setState(() {
+      signupButton = true;
+    });
     await Future.delayed(Duration(milliseconds: 300));
     await Navigator.pushNamed(context, MyRoutes.signupRoute);
+    setState(() {
+      signupButton = false;
+    });
   }
 
   @override
@@ -161,18 +165,17 @@ class _LoginPageState extends State<LoginPage> {
                           height: 60,
                         ),
                         Material(
-                          color:
-                              changeButton ? Colors.green : Colors.deepOrange,
+                          color: loginButton ? Colors.green : Colors.deepOrange,
                           borderRadius:
-                              BorderRadius.circular(changeButton ? 50 : 8),
+                              BorderRadius.circular(loginButton ? 50 : 8),
                           child: InkWell(
                             onTap: () => login(),
                             child: AnimatedContainer(
                               duration: Duration(seconds: 1),
                               height: 50,
-                              width: changeButton ? 50 : 150,
+                              width: loginButton ? 50 : 150,
                               alignment: Alignment.center,
-                              child: changeButton
+                              child: loginButton
                                   ? Icon(
                                       Icons.done,
                                       color: Colors.white,
@@ -202,16 +205,16 @@ class _LoginPageState extends State<LoginPage> {
                 .make()
                 .p12(),
             Material(
-              color: changeButton ? Colors.green : Colors.deepOrange,
-              borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
+              color: signupButton ? Colors.green : Colors.deepOrange,
+              borderRadius: BorderRadius.circular(loginButton ? 50 : 8),
               child: InkWell(
                 onTap: () => moveToSignUp(context),
                 child: AnimatedContainer(
                   duration: Duration(seconds: 1),
                   height: 50,
-                  width: changeButton ? 50 : 150,
+                  width: loginButton ? 50 : 150,
                   alignment: Alignment.center,
-                  child: changeButton
+                  child: loginButton
                       ? Icon(
                           Icons.done,
                           color: Colors.white,
