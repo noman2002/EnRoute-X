@@ -17,11 +17,16 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   checkAuthentication() async {
-    _auth.authStateChanges().listen((user) {
+    _auth.authStateChanges().listen((user) async {
       if (user != null) {
         print(user);
-
-        Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
+        setState(() {
+          changeButton = true;
+        });
+        await Future.delayed(
+          Duration(milliseconds: 300),
+        );
+        await Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
       }
     });
   }
@@ -38,7 +43,8 @@ class _LoginPageState extends State<LoginPage> {
       try {
         await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
-      print( "login successful");
+
+        print("login successful");
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           print('No user found for that email.');
