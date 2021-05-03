@@ -4,15 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-
 class MyDrawer extends StatefulWidget {
   @override
   _MyDrawerState createState() => _MyDrawerState();
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
   User? user;
@@ -43,8 +40,13 @@ class _MyDrawerState extends State<MyDrawer> {
     _auth.signOut();
   }
 
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+    this.getUser();
+  }
 
-  
   @override
   Widget build(BuildContext context) {
     // ignore: non_constant_identifier_names
@@ -94,13 +96,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
             ),
+            
             ListTile(
               leading: Icon(
-                CupertinoIcons.mail,
+                CupertinoIcons.settings,
                 color: Colors.black,
               ),
               title: Text(
-                "Email me",
+                "Settings",
                 textScaleFactor: 1.3,
                 style: TextStyle(
                   color: Colors.black,
@@ -109,11 +112,11 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             ListTile(
               leading: Icon(
-                CupertinoIcons.settings,
+                Icons.logout,
                 color: Colors.black,
               ),
               title: Text(
-                "Settings",
+                "Sign Out",
                 textScaleFactor: 1.3,
                 style: TextStyle(
                   color: Colors.black,
