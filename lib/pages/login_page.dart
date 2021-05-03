@@ -18,14 +18,14 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   checkAuthentication() async {
-    _auth.authStateChanges().listen((user) async {
+    _auth.authStateChanges().listen((user) {
       if (user != null) {
         print(user);
         setState(() {
           loginButton = true;
         });
-        await Future.delayed(
-          Duration(milliseconds: 300),
+        Future.delayed(
+          Duration(milliseconds: 600),
         );
         Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
       }
@@ -206,15 +206,15 @@ class _LoginPageState extends State<LoginPage> {
                 .p12(),
             Material(
               color: signupButton ? Colors.green : Colors.deepOrange,
-              borderRadius: BorderRadius.circular(loginButton ? 50 : 8),
+              borderRadius: BorderRadius.circular(signupButton ? 50 : 8),
               child: InkWell(
                 onTap: () => moveToSignUp(context),
                 child: AnimatedContainer(
                   duration: Duration(seconds: 1),
                   height: 50,
-                  width: loginButton ? 50 : 150,
+                  width: signupButton ? 50 : 150,
                   alignment: Alignment.center,
-                  child: loginButton
+                  child: signupButton
                       ? Icon(
                           Icons.done,
                           color: Colors.white,
