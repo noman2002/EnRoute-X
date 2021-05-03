@@ -24,18 +24,18 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  moveToHome(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        signupButton = true;
-      });
-      await Future.delayed(Duration(milliseconds: 300));
-      await Navigator.pushNamed(context, MyRoutes.loginRoute);
-      setState(() {
-        signupButton = false;
-      });
-    }
-  }
+  // moveToHome(BuildContext context) async {
+  //   if (_formKey.currentState!.validate()) {
+  //     setState(() {
+  //       signupButton = true;
+  //     });
+  //     await Future.delayed(Duration(milliseconds: 300));
+  //     await Navigator.pushNamed(context, MyRoutes.loginRoute);
+  //     setState(() {
+  //       signupButton = false;
+  //     });
+  //   }
+  // }
 
   @override
   void initState() {
@@ -189,7 +189,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         borderRadius:
                             BorderRadius.circular(signupButton ? 50 : 8),
                         child: InkWell(
-                          onTap: () => moveToHome(context),
+                          onTap: () => signUp(),
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
                             height: 50,
