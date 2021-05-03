@@ -11,7 +11,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // String name = "";
-  bool changeButton = false;
+  bool loginButton = false;
+  bool signupButton = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _email = "", _password = "";
   final _formKey = GlobalKey<FormState>();
@@ -20,7 +21,12 @@ class _LoginPageState extends State<LoginPage> {
     _auth.authStateChanges().listen((user) {
       if (user != null) {
         print(user);
-
+        setState(() {
+          loginButton = true;
+        });
+        Future.delayed(
+          Duration(milliseconds: 600),
+        );
         Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
       }
     });
@@ -38,15 +44,31 @@ class _LoginPageState extends State<LoginPage> {
       try {
         await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
-        return "login successful";
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          print('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
-        }
+
+        print("login successful");
+      } catch (e) {
+        showError(e.toString());
+        print(e);
       }
     }
+  }
+
+  showError(String errormessage) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ERROR'),
+            content: Text(errormessage),
+            actions: <Widget>[
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        });
   }
 
   // moveToHome(BuildContext context) async {
@@ -63,8 +85,14 @@ class _LoginPageState extends State<LoginPage> {
   // }
 
   moveToSignUp(BuildContext context) async {
+    setState(() {
+      signupButton = true;
+    });
     await Future.delayed(Duration(milliseconds: 300));
     await Navigator.pushNamed(context, MyRoutes.signupRoute);
+    setState(() {
+      signupButton = false;
+    });
   }
 
   @override
@@ -152,18 +180,17 @@ class _LoginPageState extends State<LoginPage> {
                           height: 60,
                         ),
                         Material(
-                          color:
-                              changeButton ? Colors.green : Colors.deepOrange,
+                          color: loginButton ? Colors.green : Colors.deepOrange,
                           borderRadius:
-                              BorderRadius.circular(changeButton ? 50 : 8),
+                              BorderRadius.circular(loginButton ? 50 : 8),
                           child: InkWell(
                             onTap: () => login(),
                             child: AnimatedContainer(
                               duration: Duration(seconds: 1),
                               height: 50,
-                              width: changeButton ? 50 : 150,
+                              width: loginButton ? 50 : 150,
                               alignment: Alignment.center,
-                              child: changeButton
+                              child: loginButton
                                   ? Icon(
                                       Icons.done,
                                       color: Colors.white,
@@ -193,16 +220,16 @@ class _LoginPageState extends State<LoginPage> {
                 .make()
                 .p12(),
             Material(
-              color: changeButton ? Colors.green : Colors.deepOrange,
-              borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
+              color: signupButton ? Colors.green : Colors.deepOrange,
+              borderRadius: BorderRadius.circular(signupButton ? 50 : 8),
               child: InkWell(
                 onTap: () => moveToSignUp(context),
                 child: AnimatedContainer(
                   duration: Duration(seconds: 1),
                   height: 50,
-                  width: changeButton ? 50 : 150,
+                  width: signupButton ? 50 : 150,
                   alignment: Alignment.center,
-                  child: changeButton
+                  child: signupButton
                       ? Icon(
                           Icons.done,
                           color: Colors.white,

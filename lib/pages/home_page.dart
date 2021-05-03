@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
       if (user == null) {
+        if(mounted)
         Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
       }
     });
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
           : Material(
               child: Column(
                 children: [
-                  ElevatedButton(onPressed: signOut(), child: Text("SignOut")),
+                 
                 ],
               ),
             ),
