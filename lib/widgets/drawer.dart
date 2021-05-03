@@ -63,8 +63,8 @@ class _MyDrawerState extends State<MyDrawer> {
               child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.transparent),
                 margin: EdgeInsets.zero,
-                accountName: "${user!.displayName}".text.black.make(),
-                accountEmail: "nomn2002@gmail.com".text.black.make(),
+                accountName: "${user?.displayName}".text.black.make(),
+                accountEmail: "${user?.email}".text.black.make(),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(ImageUrl),
                 ),
@@ -96,7 +96,6 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
             ),
-            
             ListTile(
               leading: Icon(
                 CupertinoIcons.settings,
@@ -122,6 +121,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: Colors.black,
                 ),
               ),
+              onTap: () => signOut(),
             ),
           ],
         ),

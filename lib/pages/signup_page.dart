@@ -135,6 +135,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           _name = value;
                           setState(() {});
                         },
+                        onSaved: (value) {
+                          _name = value!;
+                        },
                       ),
                       TextFormField(
                         decoration: InputDecoration(
@@ -146,6 +149,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             return "username cannot be empty";
                           }
                           return null;
+                        },
+                        onSaved: (value) {
+                          _email = value!;
                         },
                       ),
                       TextFormField(

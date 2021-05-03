@@ -46,14 +46,29 @@ class _LoginPageState extends State<LoginPage> {
             email: _email, password: _password);
 
         print("login successful");
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          print('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
-        }
+      } catch (e) {
+        showError(e.toString());
+        print(e);
       }
     }
+  }
+
+  showError(String errormessage) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ERROR'),
+            content: Text(errormessage),
+            actions: <Widget>[
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        });
   }
 
   // moveToHome(BuildContext context) async {
