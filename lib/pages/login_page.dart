@@ -27,6 +27,9 @@ class _LoginPageState extends State<LoginPage> {
           Duration(milliseconds: 300),
         );
         await Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
+        setState(() {
+          changeButton = false;
+        });
       }
     });
   }
