@@ -11,10 +11,18 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String _name = "";
   String _password = "";
-
+String _email="";
   bool signupButton = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
+
+checkAuthentication() async {
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        Navigator.of(context).pushReplacementNamed(MyRoutes.homeRoute);
+      }
+    });
+  }
 
   moveToHome(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
