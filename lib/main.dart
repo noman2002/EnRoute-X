@@ -1,5 +1,6 @@
 import 'package:enroute_x/pages/home_page.dart';
 import 'package:enroute_x/pages/login_page.dart';
+import 'package:enroute_x/pages/profile_page.dart';
 import 'package:enroute_x/pages/signup_page.dart';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,12 +20,13 @@ class MyApp extends StatelessWidget {
       // theme: MyThemes.lightTheme(context),
       debugShowCheckedModeBanner: false,
       // darkTheme: MyThemes.darkTheme(context),
-      initialRoute: MyRoutes.homeRoute,
+      initialRoute: MyRoutes.profileRoute,
       routes: {
         "/": (context) => LoginPage(),
         MyRoutes.homeRoute: (context) => HomePage(),
         MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.signupRoute: (context) => SignUpPage(),
+        MyRoutes.profileRoute:(context)=> ProfilePage(),
       },
     );
   }

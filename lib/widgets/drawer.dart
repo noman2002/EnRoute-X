@@ -1,3 +1,4 @@
+import 'package:enroute_x/pages/profile_page.dart';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -95,6 +96,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: Colors.black,
                 ),
               ),
+              onTap: ()=>ProfilePage(),
             ),
             ListTile(
               leading: Icon(

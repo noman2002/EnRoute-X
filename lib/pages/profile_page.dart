@@ -14,6 +14,7 @@ class ProfilePage extends StatelessWidget {
       drawer: Drawer(
         child: MyDrawer(),
       ),
+      body: Material(),
     );
   }
 }
