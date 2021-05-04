@@ -50,8 +50,7 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     // ignore: non_constant_identifier_names
-    final ImageUrl =
-        "https://avatars.githubusercontent.com/u/54404474?v%3D4&imgrefurl=https://github.com/noman2002&tbnid=NU56ZrYbZ4CfsM&vet=1&docid=kB_R4S8gie7mMM&w=460&h=460&itg=1&source=sh/x/im";
+    final ImageUrl = user?.photoURL;
     return Drawer(
       child: Container(
         color: Colors.orange,
@@ -65,11 +64,17 @@ class _MyDrawerState extends State<MyDrawer> {
                 margin: EdgeInsets.zero,
                 accountName: "${user?.displayName}".text.black.make(),
                 accountEmail: "${user?.email}".text.black.make(),
-                currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(ImageUrl),
-                ),
+                currentAccountPicture: ImageUrl == null
+                    ? CircleAvatar(child: Icon(Icons.add_a_photo_rounded))
+                    : CircleAvatar(
+                        backgroundImage: NetworkImage(ImageUrl),
+                        
+                      ),
+                     
               ),
+            
             ),
+            
             ListTile(
               leading: Icon(
                 CupertinoIcons.home,
@@ -82,6 +87,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: Colors.black,
                 ),
               ),
+              onTap: () => Navigator.pushNamed(context, MyRoutes.homeRoute),
             ),
             ListTile(
               leading: Icon(
@@ -95,6 +101,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: Colors.black,
                 ),
               ),
+              onTap: () => Navigator.pushNamed(context, MyRoutes.profileRoute),
             ),
             ListTile(
               leading: Icon(

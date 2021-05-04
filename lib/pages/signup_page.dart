@@ -1,3 +1,4 @@
+
 import 'package:enroute_x/utils/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
   //     });
   //   }
   // }
-
+            
   @override
   void initState() {
     super.initState();
@@ -48,11 +49,9 @@ class _SignUpPageState extends State<SignUpPage> {
       _formKey.currentState!.save();
 
       try {
-        UserCredential user = await _auth.createUserWithEmailAndPassword(
+         await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
-        if (user != null) {
-          await _auth.currentUser!.updateProfile(displayName: _name);
-        }
+        await _auth.currentUser!.updateProfile(displayName: _name);
       } catch (e) {
         showError(e.toString());
         print(e);
@@ -228,3 +227,6 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
+
+
+

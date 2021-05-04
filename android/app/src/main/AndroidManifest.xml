@@ -2,6 +2,7 @@
     package="com.example.enroute_x">
    <application
         android:label="enroute_x"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
