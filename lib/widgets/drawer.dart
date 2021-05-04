@@ -83,6 +83,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: Colors.black,
                 ),
               ),
+              onTap: () => Navigator.pushNamed(context, MyRoutes.homeRoute),
             ),
             ListTile(
               leading: Icon(
