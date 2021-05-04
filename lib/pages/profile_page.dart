@@ -11,15 +11,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late File _profileImage;
+  File _profileimage;
   final picker = ImagePicker();
 
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
-        _profileImage = File(pickedFile.path);
+        _profileimage = File(pickedFile.path);
       } else {
         print('No image selected.');
       }
@@ -40,10 +40,15 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Material(
         child: Column(
           children: [
-            Image.file(_profileImage),
+            Image.file(_profileimage),
           ],
         ),
       ),
     );
+  }
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<File>('_profileimage', _profileimage));
   }
 }
