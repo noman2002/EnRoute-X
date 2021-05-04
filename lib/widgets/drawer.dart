@@ -50,7 +50,7 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     // ignore: non_constant_identifier_names
-    final ImageUrl = user!.photoURL;
+    final ImageUrl = user?.photoURL;
     return Drawer(
       child: Container(
         color: Colors.orange,
@@ -65,7 +65,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 accountName: "${user?.displayName}".text.black.make(),
                 accountEmail: "${user?.email}".text.black.make(),
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(ImageUrl!),
+                  backgroundImage:NetworkImage(ImageUrl!),
                 ),
               ),
             ),
