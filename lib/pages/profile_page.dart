@@ -11,7 +11,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  File _profileimage;
+  late File _profileimage;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -45,10 +45,5 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
-  }
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<File>('_profileimage', _profileimage));
   }
 }
