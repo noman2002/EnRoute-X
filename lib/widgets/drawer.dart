@@ -96,7 +96,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: Colors.black,
                 ),
               ),
-              onTap: ()=>ProfilePage(),
+              onTap: () => Navigator.pushNamed(context, MyRoutes.profileRoute),
             ),
             ListTile(
               leading: Icon(
