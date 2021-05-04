@@ -40,10 +40,9 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             Container(
-              height: 200,
-            
+                height: 200,
                 child: _image == null
-                    ? "No Image".text.make()
+                    ? "No Image".text.make().centered()
                     : Image.file(_image!)),
             FloatingActionButton(
               onPressed: getImage,
