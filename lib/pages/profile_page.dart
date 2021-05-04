@@ -11,7 +11,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late File _profileimage;
+  File? _image;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     setState(() {
       if (pickedFile != null) {
-        _profileimage = File(pickedFile.path);
+        _image = File(pickedFile.path);
       } else {
         print('No image selected.');
       }
@@ -40,7 +40,10 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Material(
         child: Column(
           children: [
-            Image.file(_profileimage),
+            Container(
+                child: _image == null
+                    ? "No Image".text.make()
+                    : Image.file(_image!)),
           ],
         ),
       ),
