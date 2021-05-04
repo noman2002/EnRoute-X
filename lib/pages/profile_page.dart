@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:enroute_x/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -41,9 +40,15 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             Container(
+              height: 200,
+            
                 child: _image == null
                     ? "No Image".text.make()
                     : Image.file(_image!)),
+            FloatingActionButton(
+              onPressed: getImage,
+              child: Icon(Icons.edit),
+            )
           ],
         ),
       ),

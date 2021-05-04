@@ -68,9 +68,13 @@ class _MyDrawerState extends State<MyDrawer> {
                     ? CircleAvatar(child: Icon(Icons.add_a_photo_rounded))
                     : CircleAvatar(
                         backgroundImage: NetworkImage(ImageUrl),
+                        
                       ),
+                     
               ),
+            
             ),
+            
             ListTile(
               leading: Icon(
                 CupertinoIcons.home,
