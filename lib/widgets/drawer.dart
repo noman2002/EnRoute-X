@@ -65,7 +65,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 accountName: "${user?.displayName}".text.black.make(),
                 accountEmail: "${user?.email}".text.black.make(),
                 currentAccountPicture: ImageUrl == null
-                    ? CircleAvatar(child: Icon(Icons.verified_user_outlined))
+                    ? CircleAvatar(child: Icon(Icons.add_a_photo_rounded))
                     : CircleAvatar(
                         backgroundImage: NetworkImage(ImageUrl),
                       ),
