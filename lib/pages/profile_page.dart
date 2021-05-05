@@ -79,6 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Container(
                 height: 200,
+                alignment: Alignment.center,
                 child: _image == null
                     ? "No Image".text.make().centered()
                     : Image.file(_image!),),
