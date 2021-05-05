@@ -67,6 +67,10 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.orange,
         title: "Profile Page".text.black.make(),
       ),
+      floatingActionButton: FloatingActionButton(
+              onPressed: getImage,
+              child: Icon(Icons.edit),
+            ) ,
       drawer: Drawer(
         child: MyDrawer(),
       ),
@@ -78,10 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: _image == null
                     ? "No Image".text.make().centered()
                     : Image.file(_image!)),
-            FloatingActionButton(
-              onPressed: getImage,
-              child: Icon(Icons.edit),
-            )
+           
           ],
         ),
       ),
