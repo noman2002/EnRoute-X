@@ -77,13 +77,11 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Material(
         child: Column(
-         
           children: [
             _image == null
                 ? "No Image".text.make().centered()
                 : Container(
-                    width: 200,
-                    height: 200,
+                    height: 150,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.blue,
@@ -93,10 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         image: FileImage(_image!),
                       ),
                     ),
-                    // child: Image.file(
-                    //   _image!,
-                    // ),
-                  ),
+                  ).py64(),
           ],
         ),
       ),
