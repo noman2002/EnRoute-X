@@ -81,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 200,
                 child: _image == null
                     ? "No Image".text.make().centered()
-                    : Image.file(_image!)),
+                    : Image.file(_image!),),
            
           ],
         ),
