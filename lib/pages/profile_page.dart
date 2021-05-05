@@ -77,21 +77,26 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Material(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: 200,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                shape: BoxShape.circle,
-                
-              ),
-              child: _image == null
-                  ? "No Image".text.make().centered()
-                  : Image.file(
-                    _image!,
+            _image == null
+                ? "No Image".text.make().centered()
+                : Container(
+                    width: 200,
+                    height: 200,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: FileImage(_image!),
+                      ),
+                    ),
+                    // child: Image.file(
+                    //   _image!,
+                    // ),
                   ),
-            ),
           ],
         ),
       ),
