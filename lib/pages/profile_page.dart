@@ -14,7 +14,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   File? _image;
   final picker = ImagePicker();
- final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
   User? user;
 
@@ -47,6 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
     this.checkAuthentication();
     this.getUser();
   }
+
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
@@ -68,9 +69,9 @@ class _ProfilePageState extends State<ProfilePage> {
         title: "Profile Page".text.black.make(),
       ),
       floatingActionButton: FloatingActionButton(
-              onPressed: getImage,
-              child: Icon(Icons.edit),
-            ) ,
+        onPressed: getImage,
+        child: Icon(Icons.edit),
+      ),
       drawer: Drawer(
         child: MyDrawer(),
       ),
@@ -78,17 +79,25 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             Container(
-                height: 200,
-                alignment: Alignment.center,
-                child: _image == null
-                    ? "No Image".text.make().centered()
-                    : Image.file(_image!),),
-           
+              height: 200,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: FileImage(_image!),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: _image == null
+                  ? "No Image".text.make().centered()
+                  : Image.file(
+                      _image!,
+                    ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
