@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Material(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+         
           children: [
             _image == null
                 ? "No Image".text.make().centered()
