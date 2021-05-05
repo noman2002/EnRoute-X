@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:enroute_x/utils/routes.dart';
 import 'package:enroute_x/widgets/drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -12,7 +14,39 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   File? _image;
   final picker = ImagePicker();
+ final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isloggedin = false;
+  User? user;
 
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((user) {
+      if (user == null) {
+        if (mounted)
+          Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
+      }
+    });
+  }
+
+  getUser() async {
+    User? firebaseUser = _auth.currentUser;
+    await firebaseUser?.reload();
+    firebaseUser = _auth.currentUser;
+
+    if (firebaseUser != null) {
+      if (mounted)
+        setState(() {
+          this.user = firebaseUser;
+          this.isloggedin = true;
+        });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+    this.getUser();
+  }
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
