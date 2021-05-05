@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
       if (user == null) {
-        if(mounted)
-        Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
+        if (mounted)
+          Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
       }
     });
   }
@@ -36,8 +36,6 @@ class _HomePageState extends State<HomePage> {
         });
     }
   }
-
- 
 
   @override
   void initState() {
@@ -61,9 +59,7 @@ class _HomePageState extends State<HomePage> {
           ? CircularProgressIndicator().centered()
           : Material(
               child: Column(
-                children: [
-                 
-                ],
+                children: [],
               ),
             ),
     );
