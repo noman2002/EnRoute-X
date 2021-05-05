@@ -84,16 +84,13 @@ class _ProfilePageState extends State<ProfilePage> {
               decoration: BoxDecoration(
                 color: Colors.blue,
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: FileImage(_image!),
-                  fit: BoxFit.fill,
-                ),
+                
               ),
               child: _image == null
                   ? "No Image".text.make().centered()
                   : Image.file(
-                      _image!,
-                    ),
+                    _image!,
+                  ),
             ),
           ],
         ),
