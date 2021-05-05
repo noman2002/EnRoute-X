@@ -79,7 +79,15 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             _image == null
-                ? "No Image".text.make().centered()
+                ? Container(
+                        height: 150,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(Icons.add_a_photo))
+                    .py64()
                 : Container(
                     height: 150,
                     alignment: Alignment.center,
