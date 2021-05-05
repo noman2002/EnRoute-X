@@ -73,9 +73,12 @@ class _ProfilePageState extends State<ProfilePage> {
           .putFile(_image!);
 
       await snapshot.ref.getDownloadURL().then((value) => {imageUrl = value});
-      SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Uploaded successfully ImageUrl=$imageUrl"),
-      );
+      ));
+    }
+    if (user != null) {
+      user!.updateProfile(photoURL: imageUrl);
     }
   }
 
