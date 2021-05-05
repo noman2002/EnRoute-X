@@ -1,5 +1,8 @@
 import 'dart:io';
+import 'package:enroute_x/utils/routes.dart';
 import 'package:enroute_x/widgets/drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -12,6 +15,41 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   File? _image;
   final picker = ImagePicker();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isloggedin = false;
+  User? user;
+  final _storage = FirebaseStorage.instance;
+  String? imageUrl;
+
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((user) {
+      if (user == null) {
+        if (mounted)
+          Navigator.of(context).pushReplacementNamed(MyRoutes.loginRoute);
+      }
+    });
+  }
+
+  getUser() async {
+    User? firebaseUser = _auth.currentUser;
+    await firebaseUser?.reload();
+    firebaseUser = _auth.currentUser;
+
+    if (firebaseUser != null) {
+      if (mounted)
+        setState(() {
+          this.user = firebaseUser;
+          this.isloggedin = true;
+        });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.checkAuthentication();
+    this.getUser();
+  }
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -25,6 +63,25 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  Future uploadImage() async {
+    String fileName = _image!.path;
+    // var user = _auth.currentUser!;
+    if (_image != null) {
+      var snapshot = await _storage
+          .ref()
+          .child('profileImages/$fileName')
+          .putFile(_image!);
+
+      await snapshot.ref.getDownloadURL().then((value) => {imageUrl = value});
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Uploaded successfully ImageUrl=$imageUrl"),
+      ));
+    }
+    if (user != null) {
+      user!.updateProfile(photoURL: imageUrl);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,21 +90,40 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.orange,
         title: "Profile Page".text.black.make(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: getImage,
+        child: Icon(Icons.edit),
+      ),
       drawer: Drawer(
         child: MyDrawer(),
       ),
       body: Material(
         child: Column(
           children: [
-            Container(
-                height: 200,
-                child: _image == null
-                    ? "No Image".text.make().centered()
-                    : Image.file(_image!)),
-            FloatingActionButton(
-              onPressed: getImage,
-              child: Icon(Icons.edit),
-            )
+            _image == null
+                ? Container(
+                    height: 150,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.add_a_photo),
+                  ).py64()
+                : Container(
+                    height: 150,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: FileImage(_image!),
+                      ),
+                    ),
+                  ).py64(),
+            ElevatedButton(
+                onPressed: () => uploadImage(), child: Text("Save Image"))
           ],
         ),
       ),
