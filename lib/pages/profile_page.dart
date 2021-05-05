@@ -72,7 +72,10 @@ class _ProfilePageState extends State<ProfilePage> {
           .child('profileImages/$fileName')
           .putFile(_image!);
 
-      await snapshot.ref.getDownloadURL().then((value) => {});
+      await snapshot.ref.getDownloadURL().then((value) => {imageUrl = value});
+      SnackBar(
+        content: Text("Uploaded successfully ImageUrl=$imageUrl"),
+      );
     }
   }
 
