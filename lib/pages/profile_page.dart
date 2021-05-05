@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:enroute_x/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -60,7 +61,15 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
- 
+  uploadImage() async {
+    final _storage = FirebaseStorage.instance;
+    String uid = user!.uid;
+    if (_image != null) {
+      var snapshot = await _storage.ref().child('${uid}/').putFile(_image!);
+
+      var downloadUrl = await snapshot.ref.getDownloadURL();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,16 +91,14 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             _image == null
                 ? Container(
-                        height: 150,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(Icons.add_a_photo),
-                      
-                        )
-                    .py64()
+                    height: 150,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.add_a_photo),
+                  ).py64()
                 : Container(
                     height: 150,
                     alignment: Alignment.center,
@@ -104,6 +111,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ).py64(),
+            ElevatedButton(
+                onPressed: () => uploadImage(), child: Text("Save Image"))
           ],
         ),
       ),
