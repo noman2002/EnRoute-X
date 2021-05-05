@@ -86,7 +86,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           color: Colors.blue,
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(Icons.add_a_photo))
+                        child: Icon(Icons.add_a_photo),
+                      
+                        )
                     .py64()
                 : Container(
                     height: 150,
