@@ -18,6 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
   User? user;
+   final _storage = FirebaseStorage.instance;
 
   get downloadUrl => null;
 
@@ -64,13 +65,16 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   uploadImage() async {
-    final _storage = FirebaseStorage.instance;
+    String fileName = File(_image!.path) as String;
     // var user = _auth.currentUser!;
     if (_image != null) {
-      var snapshot = await _storage.ref().child('fileName').putFile(_image!);
+      
+      var snapshot = await _storage.ref().child('profileImages/$fileName').putFile(_image!);
 
-      final downloadUrl = await snapshot.ref.getDownloadURL();
-      print(downloadUrl);
+      await snapshot.ref.getDownloadURL().then((value) => {
+       
+      });
+     
     }
   }
 
