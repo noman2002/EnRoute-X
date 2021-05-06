@@ -106,7 +106,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.blue,
-                backgroundImage: AssetImage("assets/images/loginimage.png"),
+                backgroundImage:
+                    AssetImage("assets/images/default_profile.jpeg"),
               ),
               Positioned(
                 bottom: 0,
