@@ -106,11 +106,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
         children: [
           Stack(
             children: [
+              // _image == null
+              //     ? CircleAvatar(
+              //         radius: 60,
+              //         backgroundColor: Colors.blue,
+              //         backgroundImage: AssetImage("assets/images/default.png"),
+              //       ).p24()
+              //     :
               CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.blue,
-                backgroundImage: AssetImage("assets/images/default.png"),
-              ),
+                backgroundImage: FileImage(_image!),
+              ).p24(),
               Positioned(
                 bottom: 0,
                 right: 4,

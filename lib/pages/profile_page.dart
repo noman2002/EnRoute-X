@@ -72,7 +72,6 @@ class _ProfilePageState extends State<ProfilePage> {
               user?.photoURL == null
                   ? CircleAvatar(
                       radius: 60,
-                      backgroundColor: Colors.blue,
                       backgroundImage: AssetImage("assets/images/default.png"),
                     ).p24()
                   : CircleAvatar(
