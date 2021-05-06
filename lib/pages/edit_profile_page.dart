@@ -25,6 +25,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   String _email = "";
 
+  TextEditingController? _usernameController;
+  TextEditingController? _emailController;
+  TextEditingController? _phoneController;
+
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
       if (user == null) {
@@ -53,6 +57,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.initState();
     this.checkAuthentication();
     this.getUser();
+    _emailController = TextEditingController(text: user?.displayName);
   }
 
   Future getImage() async {
@@ -105,8 +110,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: MyDrawer(),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
+        child: Column(children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -171,23 +175,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      TextFormField(
+                      TextField(
+                        controller: _usernameController,
                         decoration: InputDecoration(
-                          hintText: "Enter Full Name",
                           labelText: "Full Name",
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "name cannot be empty";
-                          }
-                          return null;
-                        },
                         onChanged: (value) {
                           _name = value;
                           setState(() {});
-                        },
-                        onSaved: (value) {
-                          _name = value!;
                         },
                       ),
                       TextFormField(
