@@ -109,23 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 backgroundColor: Colors.blue,
                 backgroundImage: NetworkImage(user!.photoURL!),
               ),
-              Positioned(
-                bottom: 0,
-                right: 4,
-                child: ClipOval(
-                  child: InkWell(
-                    child: Container(
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(8),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                          size: 20,
-                        )),
-                    onTap: () => getImage(),
-                  ),
-                ),
-              )
+             
             ],
           ).p24(),
         ],
