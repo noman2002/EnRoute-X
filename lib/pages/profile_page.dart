@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:enroute_x/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -13,12 +11,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  File? _image;
   final picker = ImagePicker();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
   User? user;
-  final _storage = FirebaseStorage.instance;
   String? imageUrl;
 
   checkAuthentication() async {
@@ -51,37 +47,6 @@ class _ProfilePageState extends State<ProfilePage> {
     this.getUser();
   }
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
-
-  Future uploadImage() async {
-    String fileName = _image!.path;
-    // var user = _auth.currentUser!;
-    if (_image != null) {
-      var snapshot = await _storage
-          .ref()
-          .child('profileImages/$fileName')
-          .putFile(_image!);
-
-      await snapshot.ref.getDownloadURL().then((value) => {imageUrl = value});
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Uploaded successfully ImageUrl=$imageUrl"),
-      ));
-    }
-    if (user != null) {
-      user!.updateProfile(photoURL: imageUrl);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,41 +56,32 @@ class _ProfilePageState extends State<ProfilePage> {
         title: "Profile Page".text.black.make(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.editRoute);
+        },
         child: Icon(Icons.edit),
       ),
       drawer: Drawer(
         child: MyDrawer(),
       ),
-      body: Material(
-        child: Column(
-          children: [
-            _image == null
-                ? Container(
-                    height: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Icons.add_a_photo),
-                  ).py64()
-                : Container(
-                    height: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: FileImage(_image!),
-                      ),
-                    ),
-                  ).py64(),
-            ElevatedButton(
-                onPressed: () => uploadImage(), child: Text("Save Image"))
-          ],
-        ),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              user?.photoURL == null
+                  ? CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage("assets/images/default.png"),
+                    ).p24()
+                  : CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Colors.blue,
+                      backgroundImage: NetworkImage(user!.photoURL!),
+                    ).p24(),
+            ],
+          ),
+        ],
       ),
     );
   }
