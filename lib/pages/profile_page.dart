@@ -91,7 +91,9 @@ class _ProfilePageState extends State<ProfilePage> {
         title: "Profile Page".text.black.make(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.editRoute);
+        },
         child: Icon(Icons.edit),
       ),
       drawer: Drawer(
