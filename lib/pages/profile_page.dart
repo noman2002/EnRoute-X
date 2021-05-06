@@ -80,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
     if (user != null) {
       user!.updateProfile(photoURL: imageUrl);
 
-      setState(() {});
+     
     }
   }
 
