@@ -16,10 +16,7 @@ class _ProfilePageState extends State<ProfilePage> {
   bool isloggedin = false;
   User? user;
   String? imageUrl;
-  final _formKey = GlobalKey<FormState>();
-  String _name = "";
   
-  String _email = "";
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -87,95 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ).p24(),
               ],
             ),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Text(
-                    "${user?.displayName}",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "$_name",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "Enter Full Name",
-                            labelText: "Full Name",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "name cannot be empty";
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            _name = value;
-                            setState(() {});
-                          },
-                          onSaved: (value) {
-                            _name = value!;
-                          },
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "Enter username/Email",
-                            labelText: "UserName/Email",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "username cannot be empty";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            _email = value!;
-                          },
-                        ),
-                        TextFormField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "Enter Password",
-                            labelText: "Password",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Password cannot be empty";
-                            }
-                          },
-                          
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "Re-enter Password",
-                            labelText: "Confirm Password",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Password cannot be empty";
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            
           ],
         ),
       ),
