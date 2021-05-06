@@ -107,7 +107,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 radius: 60,
                 backgroundColor: Colors.blue,
                 backgroundImage:
-                    AssetImage("assets/images/default_profile.jpeg"),
+                    AssetImage("assets/images/default_profile.png"),
               ),
               Positioned(
                 bottom: 0,
