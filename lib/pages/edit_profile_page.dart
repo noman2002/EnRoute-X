@@ -104,135 +104,138 @@ class _EditProfilePageState extends State<EditProfilePage> {
       drawer: Drawer(
         child: MyDrawer(),
       ),
-      body: Column(children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            Stack(
-              children: [
-                _image == null
-                    ? CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Colors.grey,
-                        backgroundImage:
-                            AssetImage("assets/images/default.png"),
-                      ).p24()
-                    : CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Colors.grey,
-                        backgroundImage: FileImage(_image!),
-                      ).p24(),
-                Positioned(
-                  bottom: 20,
-                  right: 20,
-                  child: ClipOval(
-                    child: InkWell(
-                      child: Container(
-                          color: Colors.blue,
-                          padding: EdgeInsets.all(8),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 20,
-                          )),
-                      onTap: () => getImage(),
-                    ),
-                  ),
-                )
-              ],
-            ).p24(),
-          ],
-        ),
-        Form(
-          key: _formKey,
-          child: Column(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "${user?.displayName}",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "$_name",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Enter Full Name",
-                        labelText: "Full Name",
+              Stack(
+                children: [
+                  _image == null
+                      ? CircleAvatar(
+                          radius: 60,
+                          backgroundColor: Colors.grey,
+                          backgroundImage:
+                              AssetImage("assets/images/default.png"),
+                        ).p24()
+                      : CircleAvatar(
+                          radius: 60,
+                          backgroundColor: Colors.grey,
+                          backgroundImage: FileImage(_image!),
+                        ).p24(),
+                  Positioned(
+                    bottom: 20,
+                    right: 20,
+                    child: ClipOval(
+                      child: InkWell(
+                        child: Container(
+                            color: Colors.blue,
+                            padding: EdgeInsets.all(8),
+                            child: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                              size: 20,
+                            )),
+                        onTap: () => getImage(),
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "name cannot be empty";
-                        }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        _name = value;
-                        setState(() {});
-                      },
-                      onSaved: (value) {
-                        _name = value!;
-                      },
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Enter username/Email",
-                        labelText: "UserName/Email",
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "username cannot be empty";
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _email = value!;
-                      },
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Enter Password",
-                        labelText: "Password",
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Password cannot be empty";
-                        }
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Re-enter Password",
-                        labelText: "Confirm Password",
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Password cannot be empty";
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
+                  )
+                ],
+              ).p24(),
             ],
           ),
-        ),
-      ]),
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Text(
+                  "${user?.displayName}",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "$_name",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Enter Full Name",
+                          labelText: "Full Name",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "name cannot be empty";
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          _name = value;
+                          setState(() {});
+                        },
+                        onSaved: (value) {
+                          _name = value!;
+                        },
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Enter username/Email",
+                          labelText: "UserName/Email",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "username cannot be empty";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _email = value!;
+                        },
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: "Enter Password",
+                          labelText: "Password",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Password cannot be empty";
+                          }
+                        },
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Re-enter Password",
+                          labelText: "Confirm Password",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Password cannot be empty";
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
