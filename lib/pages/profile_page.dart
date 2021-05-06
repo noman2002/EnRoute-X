@@ -100,16 +100,22 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Material(
         child: Column(
           children: [
-            _image == null
-                ? Container(
-                    height: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Icons.add_a_photo),
-                  ).py64()
+            user!.photoURL == null
+                ? ClipOval(
+                  
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Container(
+                        height: 150,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(Icons.add_a_photo),
+                      ).py64(),
+                  ),
+                )
                 : Container(
                     height: 150,
                     alignment: Alignment.center,
@@ -118,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: FileImage(_image!),
+                        image: NetworkImage(imageUrl!),
                       ),
                     ),
                   ).py64(),
