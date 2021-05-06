@@ -96,10 +96,10 @@ class _ProfilePageState extends State<ProfilePage> {
       //   onPressed: () => uploadImage(),
       //   child: Text("Save changes"),
       // ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: getImage,
-      //   child: Icon(Icons.edit),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: getImage,
+        child: Icon(Icons.edit),
+      ),
       drawer: Drawer(
         child: MyDrawer(),
       ),
