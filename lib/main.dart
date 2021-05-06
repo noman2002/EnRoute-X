@@ -1,3 +1,4 @@
+import 'package:enroute_x/pages/edit_profile_page.dart';
 import 'package:enroute_x/pages/home_page.dart';
 import 'package:enroute_x/pages/login_page.dart';
 import 'package:enroute_x/pages/profile_page.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.signupRoute: (context) => SignUpPage(),
         MyRoutes.profileRoute:(context)=> ProfilePage(),
+        MyRoutes.editRoute:(context)=> EditProfilePage(),
       },
     );
   }
