@@ -69,11 +69,17 @@ class _ProfilePageState extends State<ProfilePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 60,
-                backgroundColor: Colors.blue,
-                backgroundImage: NetworkImage(user!.photoURL!),
-              ).p24(),
+              user?.photoURL == null
+                  ? CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Colors.blue,
+                      backgroundImage: AssetImage("assets/images/default.png"),
+                    ).p24()
+                  : CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Colors.blue,
+                      backgroundImage: NetworkImage(user!.photoURL!),
+                    ).p24(),
             ],
           ),
         ],

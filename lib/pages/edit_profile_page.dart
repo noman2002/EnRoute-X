@@ -90,9 +90,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
         backgroundColor: Colors.orange,
         title: "Edit Profile ".text.black.make(),
       ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () => uploadImage(),
-        child: Text("Save changes"),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ElevatedButton(
+          onPressed: () => uploadImage(),
+          child: Text("Save changes"),
+        ),
       ),
       drawer: Drawer(
         child: MyDrawer(),
@@ -106,8 +109,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.blue,
-                backgroundImage:
-                    AssetImage("assets/images/default_profile.png"),
+                backgroundImage: AssetImage("assets/images/default.png"),
               ),
               Positioned(
                 bottom: 0,
