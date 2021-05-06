@@ -65,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future uploadImage() async {
     String fileName = _image!.path;
-    // var user = _auth.currentUser!;
+   
     if (_image != null) {
       var snapshot = await _storage
           .ref()
