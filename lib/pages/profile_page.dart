@@ -68,25 +68,26 @@ class _ProfilePageState extends State<ProfilePage> {
       drawer: Drawer(
         child: MyDrawer(),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              user?.photoURL == null
-                  ? CircleAvatar(
-                      radius: 60,
-                      backgroundImage: AssetImage("assets/images/default.png"),
-                    ).p24()
-                  : CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.blue,
-                      backgroundImage: NetworkImage(user!.photoURL!),
-                    ).p24(),
-            ],
-          ),
-          SingleChildScrollView(
-            child: Form(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                user?.photoURL == null
+                    ? CircleAvatar(
+                        radius: 60,
+                        backgroundImage:
+                            AssetImage("assets/images/default.png"),
+                      ).p24()
+                    : CircleAvatar(
+                        radius: 60,
+                        backgroundColor: Colors.blue,
+                        backgroundImage: NetworkImage(user!.photoURL!),
+                      ).p24(),
+              ],
+            ),
+            Form(
               key: _formKey,
               child: Column(
                 children: [
@@ -177,8 +178,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
