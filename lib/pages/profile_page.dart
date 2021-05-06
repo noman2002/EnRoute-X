@@ -90,7 +90,6 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.orange,
         title: "Profile Page".text.black.make(),
       ),
-      
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
         child: Icon(Icons.edit),
@@ -98,20 +97,18 @@ class _ProfilePageState extends State<ProfilePage> {
       drawer: Drawer(
         child: MyDrawer(),
       ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          Stack(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.blue,
                 backgroundImage: NetworkImage(user!.photoURL!),
-              ),
-             
+              ).p24(),
             ],
-          ).p24(),
+          ),
         ],
       ),
     );
