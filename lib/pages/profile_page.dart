@@ -18,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String? imageUrl;
   final _formKey = GlobalKey<FormState>();
   String _name = "";
-  String _password = "";
+  
   String _email = "";
 
   checkAuthentication() async {
@@ -157,9 +157,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               return "Password cannot be empty";
                             }
                           },
-                          onChanged: (value) {
-                            _password = value;
-                          },
+                          
                         ),
                         TextFormField(
                           decoration: InputDecoration(
