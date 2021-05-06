@@ -79,6 +79,8 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (user != null) {
       user!.updateProfile(photoURL: imageUrl);
+
+      setState(() {});
     }
   }
 
@@ -90,48 +92,51 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.orange,
         title: "Profile Page".text.black.make(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        child: Icon(Icons.edit),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ElevatedButton(
+          onPressed: () => uploadImage(),
+          child: Text("Save changes"),
+        ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: getImage,
+      //   child: Icon(Icons.edit),
+      // ),
       drawer: Drawer(
         child: MyDrawer(),
       ),
-      body: Material(
-        child: Column(
-          children: [
-            user!.photoURL == null
-                ? ClipOval(
-                  
-                  child: Material(
-                    color: Colors.transparent,
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Stack(
+            children: [
+              CircleAvatar(
+                radius: 60,
+                backgroundColor: Colors.blue,
+                backgroundImage: NetworkImage(user!.photoURL!),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 4,
+                child: ClipOval(
+                  child: InkWell(
                     child: Container(
-                        height: 150,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(Icons.add_a_photo),
-                      ).py64(),
+                        color: Colors.blue,
+                        padding: EdgeInsets.all(8),
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 20,
+                        )),
+                    onTap: () => getImage(),
                   ),
-                )
-                : Container(
-                    height: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(imageUrl!),
-                      ),
-                    ),
-                  ).py64(),
-            ElevatedButton(
-                onPressed: () => uploadImage(), child: Text("Save Image"))
-          ],
-        ),
+                ),
+              )
+            ],
+          ).p24(),
+        ],
       ),
     );
   }
