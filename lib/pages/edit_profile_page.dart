@@ -88,7 +88,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       appBar: AppBar(
         iconTheme: IconThemeData.fallback(),
         backgroundColor: Colors.orange,
-        title: "Profile Page".text.black.make(),
+        title: "Edit Profile ".text.black.make(),
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () => uploadImage(),
@@ -106,7 +106,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.blue,
-                backgroundImage: NetworkImage(user!.photoURL!),
+                backgroundImage: AssetImage("assets/images/loginimage.png"),
               ),
               Positioned(
                 bottom: 0,
