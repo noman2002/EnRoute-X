@@ -57,7 +57,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.initState();
     this.checkAuthentication();
     this.getUser();
-    _emailController = TextEditingController(text: user?.displayName);
+    _usernameController = TextEditingController(text: user?.displayName);
   }
 
   Future getImage() async {
@@ -175,14 +175,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      TextField(
+                      TextFormField(
                         controller: _usernameController,
+                        autofocus: true,
                         decoration: InputDecoration(
                           labelText: "Full Name",
                         ),
                         onChanged: (value) {
                           _name = value;
                           setState(() {});
+                        },
+                        onSaved: (value) {
+                          if (user != null) {
+                            user?.updateProfile(displayName: _name);
+                          }
                         },
                       ),
                       TextFormField(
