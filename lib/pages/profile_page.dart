@@ -92,10 +92,10 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.orange,
         title: "Profile Page".text.black.make(),
       ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () => uploadImage(),
-        child: Text("Save changes"),
-      ),
+      // bottomNavigationBar: ElevatedButton(
+      //   onPressed: () => uploadImage(),
+      //   child: Text("Save changes"),
+      // ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: getImage,
       //   child: Icon(Icons.edit),
