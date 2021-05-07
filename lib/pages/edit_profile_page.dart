@@ -22,8 +22,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _storage = FirebaseStorage.instance;
   String? imageUrl;
   final _formKey = GlobalKey<FormState>();
-  String _name = "";
-  String _email = "";
+  String? _name ;
+  String? _email ;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -44,6 +44,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         setState(() {
           this.user = firebaseUser;
           this.isloggedin = true;
+          
         });
     }
   }
@@ -157,13 +158,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    "$_name",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -173,8 +167,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       children: [
                         TextFieldWidget(
                             label: "Full Name",
-                            text: user?.displayName,
-                            onChanged: (name) {}),
+                            text: _name,
+                            onChanged: (name) {
+                              setState(() {});
+                            }),
                       ],
                     ),
                   ),
