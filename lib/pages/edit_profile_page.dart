@@ -22,7 +22,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String? imageUrl;
   final _formKey = GlobalKey<FormState>();
   String _name = "";
-
+String initialText = "hello";
   String _email = "";
 
   late TextEditingController _usernameController;
@@ -188,15 +188,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           // decoration: InputDecoration(
                           //   labelText: "Full Name",
                           // ),
-                          onChanged: (newValue) {
-                            _name = newValue;
-                            setState(() {});
-                          },
-                          onSaved: (value) {
-                            if (user != null) {
-                              user?.updateProfile(displayName: _name);
-                            }
-                          },
+                          // onChanged: (newValue) {
+                          //   _name = newValue;
+                          //   setState(() {});
+                          // },
+                          // onSaved: (value) {
+                          //   if (user != null) {
+                          //     user?.updateProfile(displayName: _name);
+                          //   }
+                          // },
                         ),
                         TextFormField(
                           decoration: InputDecoration(
