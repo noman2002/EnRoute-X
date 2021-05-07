@@ -25,9 +25,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   String _email = "";
 
-  TextEditingController? _usernameController;
-  TextEditingController? _emailController;
-  TextEditingController? _phoneController;
+  late TextEditingController _usernameController;
+  late TextEditingController _emailController;
+  late TextEditingController _phoneController;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -58,6 +58,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     this.checkAuthentication();
     this.getUser();
     _usernameController = TextEditingController(text: user?.displayName);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _usernameController.dispose();
   }
 
   Future getImage() async {
@@ -178,12 +184,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       children: [
                         TextFormField(
                           controller: _usernameController,
-                          autofocus: true,
-                          decoration: InputDecoration(
-                            labelText: "Full Name",
-                          ),
-                          onChanged: (value) {
-                            _name = value;
+
+                          // decoration: InputDecoration(
+                          //   labelText: "Full Name",
+                          // ),
+                          onChanged: (newValue) {
+                            _name = newValue;
                             setState(() {});
                           },
                           onSaved: (value) {
