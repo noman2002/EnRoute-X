@@ -163,14 +163,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         TextFieldWidget(
                             label: "Full Name",
                             text: user.displayName,
-                            onChanged: (name) {}),
+                            onChanged: (name) {
+                              user.updateProfile(displayName: name);
+                            }),
                         SizedBox(
                           height: 20,
                         ),
                         TextFieldWidget(
                             label: "Email",
                             text: user.email,
-                            onChanged: (email) {}),
+                            onChanged: (email) {
+                              user.updateEmail(email);
+                            }),
                         SizedBox(
                           height: 20,
                         ),
@@ -178,7 +182,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             label: "Phone ",
                             text: user.phoneNumber,
                             onChanged: (phone) {}),
-                        SizedBox(height: 20),
+                        SizedBox(
+                          height: 20,
+                        ),
                       ],
                     ),
                   ),
