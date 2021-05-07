@@ -1,4 +1,3 @@
-
 import 'package:enroute_x/utils/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
   //     });
   //   }
   // }
-            
+
   @override
   void initState() {
     super.initState();
@@ -49,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
       _formKey.currentState!.save();
 
       try {
-         await _auth.createUserWithEmailAndPassword(
+        await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
         await _auth.currentUser!.updateProfile(displayName: _name);
       } catch (e) {
@@ -68,10 +67,11 @@ class _SignUpPageState extends State<SignUpPage> {
             content: Text(errormessage),
             actions: <Widget>[
               ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
             ],
           );
         });
@@ -227,6 +227,3 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
-
-
-

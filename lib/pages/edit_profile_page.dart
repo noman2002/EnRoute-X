@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:enroute_x/widgets/drawer.dart';
+import 'package:enroute_x/widgets/textfield_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final picker = ImagePicker();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
-  User? user;
+  late User user;
   final _storage = FirebaseStorage.instance;
   String? imageUrl;
+  final _formKey = GlobalKey<FormState>();
+  var _name;
+  var _email;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -38,7 +42,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     if (firebaseUser != null) {
       if (mounted)
         setState(() {
-          this.user = firebaseUser;
+          this.user = firebaseUser!;
           this.isloggedin = true;
         });
     }
@@ -77,9 +81,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
         content: Text("Uploaded successfully ImageUrl=$imageUrl"),
       ));
     }
-    if (user != null) {
-      user!.updateProfile(photoURL: imageUrl);
-    }
+    user.updateProfile(photoURL: imageUrl);
+  }
+
+  saveChanges() {
+    uploadImage();
+    user.updateProfile(displayName: _name);
+    user.updateEmail(_email);
   }
 
   @override
@@ -93,51 +101,115 @@ class _EditProfilePageState extends State<EditProfilePage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ElevatedButton(
-          onPressed: () => uploadImage(),
+          onPressed: () => saveChanges(),
           child: Text("Save changes"),
         ),
       ),
       drawer: Drawer(
         child: MyDrawer(),
       ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Stack(
-            children: [
-              _image == null
-                  ? CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.blue,
-                      backgroundImage: AssetImage("assets/images/default.png"),
-                    ).p24()
-                  : CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.blue,
-                      backgroundImage: FileImage(_image!),
-                    ).p24(),
-              Positioned(
-                bottom: 20,
-                right: 20,
-                child: ClipOval(
-                  child: InkWell(
-                    child: Container(
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(8),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                          size: 20,
-                        )),
-                    onTap: () => getImage(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  children: [
+                    _image == null
+                        ? CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.grey,
+                            backgroundImage:
+                                AssetImage("assets/images/default.png"),
+                          ).p24()
+                        : CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.grey,
+                            backgroundImage: FileImage(_image!),
+                          ).p24(),
+                    Positioned(
+                      bottom: 20,
+                      right: 20,
+                      child: ClipOval(
+                        child: InkWell(
+                          child: Container(
+                              color: Colors.blue,
+                              padding: EdgeInsets.all(8),
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 20,
+                              )),
+                          onTap: () => getImage(),
+                        ),
+                      ),
+                    )
+                  ],
+                ).p24(),
+              ],
+            ),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Text(
+                    "${user.displayName}",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              )
-            ],
-          ).p24(),
-        ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        TextFieldWidget(
+                            label: "Full Name",
+                            text: user.displayName,
+                            onChanged: (name) {
+                              _name = name;
+                              // user.updateProfile(displayName: name);
+                            }),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFieldWidget(
+                            label: "Email",
+                            text: user.email,
+                            onChanged: (email) {
+                              _email = email;
+                              // user.updateEmail(email);
+                            }),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFieldWidget(
+                            label: "Phone ",
+                            text: user.phoneNumber,
+                            onChanged: (phone) {}),
+                        SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
+
+
+
+

@@ -16,6 +16,7 @@ class _ProfilePageState extends State<ProfilePage> {
   bool isloggedin = false;
   User? user;
   String? imageUrl;
+  
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -64,24 +65,27 @@ class _ProfilePageState extends State<ProfilePage> {
       drawer: Drawer(
         child: MyDrawer(),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              user?.photoURL == null
-                  ? CircleAvatar(
-                      radius: 60,
-                      backgroundImage: AssetImage("assets/images/default.png"),
-                    ).p24()
-                  : CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.blue,
-                      backgroundImage: NetworkImage(user!.photoURL!),
-                    ).p24(),
-            ],
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                user?.photoURL == null
+                    ? CircleAvatar(
+                        radius: 60,
+                        backgroundImage:
+                            AssetImage("assets/images/default.png"),
+                      ).p24()
+                    : CircleAvatar(
+                        radius: 60,
+                        backgroundColor: Colors.blue,
+                        backgroundImage: NetworkImage(user!.photoURL!),
+                      ).p24(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
