@@ -173,7 +173,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       children: [
                         TextFieldWidget(
                             label: "Full Name",
-                            text: initialText,
+                            text: user?.displayName,
                             onChanged: (name) {}),
                       ],
                     ),
