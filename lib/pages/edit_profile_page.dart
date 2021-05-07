@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:enroute_x/widgets/drawer.dart';
+import 'package:enroute_x/widgets/textfield_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -57,14 +58,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.initState();
     this.checkAuthentication();
     this.getUser();
-    _usernameController = TextEditingController(text: initialText);
+   
   }
 
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    super.dispose();
-  }
+
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -182,61 +179,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        TextField(
-                          controller: _usernameController,
-
-                          decoration: InputDecoration(
-                              // labelText: "Full Name",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12))),
-                          // onChanged: (newValue) {
-                          //   _name = newValue;
-                          //   setState(() {});
-                          // },
-                          // onSaved: (value) {
-                          //   if (user != null) {
-                          //     user?.updateProfile(displayName: _name);
-                          //   }
-                          // },
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "Enter username/Email",
-                            labelText: "UserName/Email",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "username cannot be empty";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            _email = value!;
-                          },
-                        ),
-                        TextFormField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "Enter Password",
-                            labelText: "Password",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Password cannot be empty";
-                            }
-                          },
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "Re-enter Password",
-                            labelText: "Confirm Password",
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Password cannot be empty";
-                            }
-                          },
-                        ),
+                        TextFieldWidget(
+                            label: "Full Name",
+                            text: initialText,
+                            onChanged: (name) {}),
                       ],
                     ),
                   ),
