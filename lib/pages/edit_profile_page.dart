@@ -23,12 +23,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String? imageUrl;
   final _formKey = GlobalKey<FormState>();
   String _name = "";
-  String initialText = "hello";
   String _email = "";
-
-  late TextEditingController _usernameController;
-  late TextEditingController _emailController;
-  late TextEditingController _phoneController;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -58,10 +53,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.initState();
     this.checkAuthentication();
     this.getUser();
-   
   }
-
-
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
