@@ -22,6 +22,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _storage = FirebaseStorage.instance;
   String? imageUrl;
   final _formKey = GlobalKey<FormState>();
+  var _name;
+  var _email;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -82,6 +84,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     user.updateProfile(photoURL: imageUrl);
   }
 
+  saveChanges() {
+    uploadImage();
+    user.updateProfile(displayName: _name);
+    user.updateEmail(_email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +101,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ElevatedButton(
-          onPressed: () => uploadImage(),
+          onPressed: () => saveChanges(),
           child: Text("Save changes"),
         ),
       ),
@@ -164,7 +172,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             label: "Full Name",
                             text: user.displayName,
                             onChanged: (name) {
-                              user.updateProfile(displayName: name);
+                              _name = name;
+                              // user.updateProfile(displayName: name);
                             }),
                         SizedBox(
                           height: 20,
@@ -173,7 +182,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             label: "Email",
                             text: user.email,
                             onChanged: (email) {
-                              user.updateEmail(email);
+                              _email = email;
+                              // user.updateEmail(email);
                             }),
                         SizedBox(
                           height: 20,
