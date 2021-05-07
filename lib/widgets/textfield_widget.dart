@@ -37,9 +37,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.label,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          Padding(
+            padding: const EdgeInsets.only(left: 08),
+            child: Text(
+              widget.label,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
           ),
           const SizedBox(height: 8),
           TextField(
