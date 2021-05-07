@@ -22,7 +22,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String? imageUrl;
   final _formKey = GlobalKey<FormState>();
   String _name = "";
-String initialText = "hello";
+  String initialText = "hello";
   String _email = "";
 
   late TextEditingController _usernameController;
@@ -57,13 +57,13 @@ String initialText = "hello";
     super.initState();
     this.checkAuthentication();
     this.getUser();
-    _usernameController = TextEditingController(text: user?.displayName);
+    _usernameController = TextEditingController(text: initialText);
   }
 
   @override
   void dispose() {
-    super.dispose();
     _usernameController.dispose();
+    super.dispose();
   }
 
   Future getImage() async {
@@ -182,12 +182,13 @@ String initialText = "hello";
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        TextFormField(
+                        TextField(
                           controller: _usernameController,
 
-                          // decoration: InputDecoration(
-                          //   labelText: "Full Name",
-                          // ),
+                          decoration: InputDecoration(
+                              // labelText: "Full Name",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12))),
                           // onChanged: (newValue) {
                           //   _name = newValue;
                           //   setState(() {});
