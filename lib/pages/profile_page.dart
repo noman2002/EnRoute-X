@@ -72,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                user?.photoURL == null
+                user.photoURL == null
                     ? CircleAvatar(
                         radius: 60,
                         backgroundImage:
@@ -81,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     : CircleAvatar(
                         radius: 60,
                         backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(user!.photoURL!),
+                        backgroundImage: NetworkImage(user.photoURL!),
                       ).p24(),
               ],
             ),
