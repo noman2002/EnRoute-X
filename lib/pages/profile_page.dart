@@ -68,41 +68,50 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                user.photoURL == null
-                    ? CircleAvatar(
-                        radius: 60,
-                        backgroundImage:
-                            AssetImage("assets/images/default.png"),
-                      ).p24()
-                    : CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(user.photoURL!),
-                      ).p24(),
-              ],
-            ),
-            Text(
-              "${user.displayName}",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    user.photoURL == null
+                        ? CircleAvatar(
+                            radius: 60,
+                            backgroundImage:
+                                AssetImage("assets/images/default.png"),
+                          ).p24()
+                        : CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.blue,
+                            backgroundImage: NetworkImage(user.photoURL!),
+                          ).p24(),
+                  ],
+                ),
                 Text(
-                  "${user.email}",
+                  "${user.displayName}",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
-                  textAlign: TextAlign.left,
                 ),
               ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Text(
+                    "Email",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
