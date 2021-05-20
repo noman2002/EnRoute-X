@@ -119,7 +119,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 5,
                   ),
                   Container(
-                    
                     decoration: BoxDecoration(
                         border: Border.all(),
                         borderRadius: BorderRadius.circular(20)),
@@ -131,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 22,
                           // fontWeight: FontWeight.bold,
                         ),
-                      ),
+                      ).expand(),
                     ),
                   )
                 ],
