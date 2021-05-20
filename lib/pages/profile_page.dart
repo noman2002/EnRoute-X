@@ -108,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.left,
+                    
                   ),
                 ],
               ),
