@@ -99,8 +99,11 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(
+                left: 16,
+              ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Email",
@@ -108,8 +111,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
-                    
                   ),
+                  Container(
+                    decoration: Border.all(),
+                    child: Text(
+                      "${user.email}",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
