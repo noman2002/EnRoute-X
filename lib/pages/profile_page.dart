@@ -16,7 +16,6 @@ class _ProfilePageState extends State<ProfilePage> {
   bool isloggedin = false;
   late User user;
   String? imageUrl;
-  
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -68,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-          
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -86,12 +84,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
             Text(
-                    "${user.displayName}",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+              "${user.displayName}",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
