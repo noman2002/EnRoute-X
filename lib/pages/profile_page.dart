@@ -66,6 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -90,13 +91,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
-              "${user.email}",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.left,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "${user.email}",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
             ),
           ],
         ),
