@@ -105,20 +105,32 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Email",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      "Email",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Container(
-                    decoration: Border.all(),
-                    child: Text(
-                      "${user.email}",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+                    
+                    decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "${user.email}",
+                        style: TextStyle(
+                          fontSize: 22,
+                          // fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   )
