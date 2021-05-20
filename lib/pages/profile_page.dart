@@ -14,7 +14,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final picker = ImagePicker();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
-  User? user;
+  late User user;
   String? imageUrl;
   
 
@@ -35,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
     if (firebaseUser != null) {
       if (mounted)
         setState(() {
-          this.user = firebaseUser;
+          this.user = firebaseUser!;
           this.isloggedin = true;
         });
     }
@@ -68,6 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+          
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -84,6 +85,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       ).p24(),
               ],
             ),
+            Text(
+                    "${user.displayName}",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ],
         ),
       ),
