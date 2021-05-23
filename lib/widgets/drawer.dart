@@ -14,6 +14,7 @@ class _MyDrawerState extends State<MyDrawer> {
   bool isloggedin = false;
   User? user;
 
+
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
       if (user == null) {
