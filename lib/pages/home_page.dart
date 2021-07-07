@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:enroute_x/utils/routes.dart';
 import 'package:enroute_x/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -44,12 +45,20 @@ class _HomePageState extends State<HomePage> {
     this.getUser();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.orange,
+        items: [
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+          Icon(Icons.compare_arrows, size: 30),
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+        ],
+        onTap: (index) {},
+      ),
       appBar: AppBar(
         iconTheme: IconThemeData.fallback(),
         backgroundColor: Colors.orange,
@@ -58,8 +67,6 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
         child: MyDrawer(),
       ),
-     
-
       body: !isloggedin
           ? CircularProgressIndicator().centered()
           : Material(
