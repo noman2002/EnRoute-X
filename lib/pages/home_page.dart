@@ -54,9 +54,11 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.orange,
         title: "EnRoute-X".text.black.make(),
       ),
-      drawer: Drawer(
-        child: MyDrawer(),
-      ),
+      // drawer: Drawer(
+      //   child: MyDrawer(),
+      // ),
+     
+     
       body: !isloggedin
           ? CircularProgressIndicator().centered()
           : Material(
