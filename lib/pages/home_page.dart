@@ -49,16 +49,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       appBar: AppBar(
         iconTheme: IconThemeData.fallback(),
         backgroundColor: Colors.orange,
         title: "EnRoute-X".text.black.make(),
       ),
-      // drawer: Drawer(
-      //   child: MyDrawer(),
-      // ),
+      drawer: Drawer(
+        child: MyDrawer(),
+      ),
      
-     
+
       body: !isloggedin
           ? CircularProgressIndicator().centered()
           : Material(
