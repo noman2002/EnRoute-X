@@ -43,7 +43,7 @@ so that the app can contact you in emergency situations / to send warning pop up
 our app care about you and your personal data ,no one will be able to access your live location without your permission . even your own friends , if demand accees for your location won't be provided with the same without your permission.
 
 - changing Destination-
-- 
+
  no one  even you will be able to change your destination once chosen . it will only allow change if you and minimum one , friends will give permission for changing the destination including you .
 
 - permission -
