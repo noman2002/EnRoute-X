@@ -12,8 +12,7 @@ class MyDrawer extends StatefulWidget {
 class _MyDrawerState extends State<MyDrawer> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedin = false;
-  User? user;
-
+  late User? user;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
@@ -69,13 +68,9 @@ class _MyDrawerState extends State<MyDrawer> {
                     ? CircleAvatar(child: Icon(Icons.add_a_photo_rounded))
                     : CircleAvatar(
                         backgroundImage: NetworkImage(ImageUrl),
-                        
                       ),
-                     
               ),
-            
             ),
-            
             ListTile(
               leading: Icon(
                 CupertinoIcons.home,
