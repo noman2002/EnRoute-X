@@ -52,6 +52,3 @@ our app care about you and your personal data ,no one will be able to access you
  we will only be accessing your location , nothing more will be accessed . in emergency , if required our app will access mic and camera with your permission which is asked everytime when the tracking begins.
 
 
-
-
-
